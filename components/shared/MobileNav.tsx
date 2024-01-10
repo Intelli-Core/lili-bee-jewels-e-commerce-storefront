@@ -17,7 +17,7 @@ const MobileNav = () => {
         </SheetTrigger>
         <SheetContent
           side={"top"}
-          className="flex flex-col gap-6 bg-white md:hidden max-h-[100vh] p-10 rounded-b-lg"
+          className="flex flex-col gap-6 bg-white md:hidden max-h-[100vh] p-10 rounded-b-xl"
         >
           <NavItems fontStyle="p-medium-24" />
         </SheetContent>
