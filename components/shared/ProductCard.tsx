@@ -8,7 +8,7 @@ const ProductCard = ({ name, description, price, image }: Product) => {
     <div className="flex flex-col gap-2.5 md:gap-2.5">
       <Card className="w-full max-w-sm min-w-[50%] md:min-w-[20%] rounded-[8px] bg-white">
         <Image
-          src="/assets/images/image-placeholder.svg"
+          src="/assets/images/placeholders/image-placeholder.svg"
           alt="product-card"
           width={350}
           height={350}
