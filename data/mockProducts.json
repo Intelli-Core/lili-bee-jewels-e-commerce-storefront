@@ -1,0 +1,44 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Pearl Necklace",
+      "price": 100,
+      "type": "necklace",
+      "material": "pearl",
+      "color": "white"
+    },
+    {
+      "id": 2,
+      "name": "Diamond Ring",
+      "price": 200,
+      "type": "ring",
+      "material": "diamond",
+      "color": "clear"
+    },
+    {
+      "id": 3,
+      "name": "Ruby Earrings",
+      "price": 300,
+      "type": "earrings",
+      "material": "ruby",
+      "color": "red"
+    },
+    {
+      "id": 4,
+      "name": "Sapphire Bracelet",
+      "price": 400,
+      "type": "bracelet",
+      "material": "sapphire",
+      "color": "blue"
+    },
+    {
+      "id": 5,
+      "name": "Emerald Pendant",
+      "price": 500,
+      "type": "pendant",
+      "material": "emerald",
+      "color": "green"
+    }
+  ]
+}

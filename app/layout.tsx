@@ -1,18 +1,6 @@
 import type { Metadata } from 'next'
-import { Jost, Josefin_Sans } from 'next/font/google'
 import './globals.css'
-
-const jost = Jost({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-jost',
-})
-
-const josefin_sans = Josefin_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-josefin-sans',
-})
+import { jost } from "@/lib/fonts";
 
 export const metadata: Metadata = {
   title: 'Lili Bee Jewels',
@@ -26,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={jost.variable}>{children}</body>
+      <body className={jost.className}>{children}</body>
     </html>
   )
 }
