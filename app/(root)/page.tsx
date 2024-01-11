@@ -1,10 +1,14 @@
+import * as React from "react";
 import { josefin_sans } from "@/lib/fonts";
 import Image from "next/image";
+import ProductCarousel from "@/components/shared/ProductCarousel";
+import products from "@/data/mockProducts.json";
 
 export default function Home() {
   return (
     <>
-      <section className="bg-[#F2F4F7] bg-contain py-2 md:py-2">
+      {/* Hero Section */}
+      <section className="bg-[#F2F4F7] bg-contain py-2 mb-5 md:py-2">
         <div className="wrapper grid grid-cols-1 gap-5 md:grid-cols-2 2xl:gap-0">
           <div className="flex flex-col justify-center gap-2 text-center md:text-left">
             <h2 className="h2-bold">
@@ -29,8 +33,20 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="wrapper my-8 flex flex-col gap-8 md:gap-12">
-        Home
+      {/* Showcased Products Section */}
+      <section className="wrapper flex flex-col gap-5">
+        {/* Latest Arrival Carousel */}
+        <ProductCarousel
+          products={products.data}
+          title={"Latest Products"}
+          route={"/store/latest"}
+        />
+        {/* Featured Products */}
+        <ProductCarousel
+          products={products.data}
+          title={"Featured Products"}
+          route={"/store/featured"}
+        />
       </section>
     </>
   );
