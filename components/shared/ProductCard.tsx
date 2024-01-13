@@ -13,6 +13,7 @@ const ProductCard = ({ name, description, price, image }: Product) => {
           width={350}
           height={350}
           className="object-contain object-center"
+          priority
         />
       </Card>
       <div className="flex flex-col gap-1">
