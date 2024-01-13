@@ -1,16 +1,24 @@
 "use client";
 
-import { headerLinks } from "@/constants";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import React from "react";
+import { headerLinks } from "@/constants";
+import { usePathname, useRouter } from "next/navigation";
 
-interface NavItemProps {
+type NavItemProps = {
   fontStyle?: string;
-}
+  closeSheet?: () => void;
+};
 
-const NavItems: React.FC<NavItemProps> = ({ fontStyle = "p-regular-16" }) => {
+const NavItems = ({ fontStyle = "p-regular-16", closeSheet }: NavItemProps) => {
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleClick = (route: string) => {
+    if (closeSheet) {
+      closeSheet();
+    }
+    router.push(route);
+  };
 
   return (
     <ul className="md:flex-between flex w-full flex-col items-start gap-5 md:flex-row">
@@ -26,7 +34,9 @@ const NavItems: React.FC<NavItemProps> = ({ fontStyle = "p-regular-16" }) => {
               link.mobile ? "block md:hidden" : "hidden md:block"
             }`}
           >
-            <Link href={link.route}>{link.label.toUpperCase()}</Link>
+            <button onClick={() => handleClick(link.route)}>
+              {link.label.toUpperCase()}
+            </button>
           </li>
         );
       })}
