@@ -7,7 +7,7 @@ import NavItems from "./NavItems";
 import { headerButtons } from "@/constants";
 import Image from "next/image";
 import Icon from "./Icon";
-import MobileNav from "./MobileNav";
+import MobileNav from "./mobile/MobileNav";
 
 export const LogoLink = () => {
   return (
@@ -60,9 +60,9 @@ const Header = () => {
                 </div>
               );
             })}
-            
-            {/* Mobile Nav Button */}
-            <MobileNav />
+
+          {/* Mobile Nav Button */}
+          <MobileNav />
         </div>
       </div>
     </header>

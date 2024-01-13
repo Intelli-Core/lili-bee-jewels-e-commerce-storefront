@@ -1,8 +1,8 @@
 import React from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
-import Icon from "./Icon";
-import NavItems from "./NavItems";
+import Icon from "../Icon";
+import NavItems from "../NavItems";
 
 const MobileNav = () => {
   return (
