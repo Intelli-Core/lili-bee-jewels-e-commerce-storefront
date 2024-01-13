@@ -1,0 +1,130 @@
+{
+  "data": {
+    "categories": [
+      {
+        "id": 1,
+        "value": "Rings"
+      },
+      {
+        "id": 2,
+        "value": "Necklaces"
+      },
+      {
+        "id": 3,
+        "value": "Bracelets"
+      },
+      {
+        "id": 4,
+        "value": "Earrings"
+      },
+      {
+        "id": 5,
+        "value": "Pendants"
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "value": "Cubic Zirconia"
+      },
+      {
+        "id": 2,
+        "value": "Evaluel"
+      },
+      {
+        "id": 3,
+        "value": "Gold"
+      },
+      {
+        "id": 4,
+        "value": "Sterling Silver"
+      },
+      {
+        "id": 5,
+        "value": "Rose Gold Plated"
+      },
+      {
+        "id": 6,
+        "value": "Two-Tone"
+      }
+    ],
+    "colors": [
+      {
+        "id": 1,
+        "value": "Black"
+      },
+      {
+        "id": 2,
+        "value": "Blue"
+      },
+      {
+        "id": 3,
+        "value": "Gold"
+      },
+      {
+        "id": 4,
+        "value": "Green"
+      },
+      {
+        "id": 5,
+        "value": "White"
+      }
+    ],
+    "sizes": [
+      {
+        "id": 1,
+        "value": "10 in"
+      }
+    ],
+    "Price Ranges": [
+      {
+        "id": 1,
+        "value": "$0-$50"
+      },
+      {
+        "id": 2,
+        "value": "$50-$100"
+      },
+      {
+        "id": 3,
+        "value": "$100-$150"
+      },
+      {
+        "id": 4,
+        "value": "$150-$200"
+      },
+      {
+        "id": 5,
+        "value": "$200-$250"
+      },
+      {
+        "id": 6,
+        "value": "$250-$300"
+      },
+      {
+        "id": 7,
+        "value": "$300-$350"
+      },
+      {
+        "id": 8,
+        "value": "$350-$400"
+      },
+      {
+        "id": 9,
+        "value": "$400-$450"
+      },
+      {
+        "id": 10,
+        "value": "$450-$500"
+      },
+      {
+        "id": 11,
+        "value": "$500-$550"
+      },
+      {
+        "id": 12,
+        "value": "$550-$600"
+      }
+    ]
+  }
+}

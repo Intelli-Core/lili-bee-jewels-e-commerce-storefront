@@ -52,6 +52,23 @@ const ProductCarousel = ({ products, title, route }: ProductCarouselProps) => {
                     id={product.id}
                     name={product.name}
                     price={product.price}
+                    category={{
+                      id: product.category.id,
+                      value: product.category.value,
+                    }}
+                    material={{
+                      id: product.material.id,
+                      value: product.material.value,
+                    }}
+                    color={{
+                      id: product.color.id,
+                      value: product.color.value,
+                      hex: product.color.hex,
+                    }}
+                    priceRange={{
+                      id: product.priceRange.id,
+                      value: product.priceRange.value,
+                    }}
                   />
                 </div>
               </CarouselItem>

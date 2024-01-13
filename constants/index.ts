@@ -48,3 +48,26 @@ export const headerButtons = [
     mobile: true,
   }
 ];
+
+export const sortOptions = [
+  {
+    label: "Trending Now",
+    value: "trending_now",
+  },
+  {
+    label: "New Arrivals",
+    value: "new_arrivals",
+  },
+  {
+    label: "Best Selling",
+    value: "best_selling",
+  },
+  {
+    label: "Highest Price",
+    value: "highest_price",
+  },
+  {
+    label: "Lowest Price",
+    value: "lowest_price",
+  }
+]

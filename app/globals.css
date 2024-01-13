@@ -86,7 +86,7 @@
   }
 
   .flex-between {
-    @apply flex justify-between items-center;
+    @apply flex justify-between;
   }
 
   /* TYPOGRAPHY */
@@ -196,4 +196,14 @@
   .p-medium-12 {
     @apply text-[12px] font-medium leading-[20px];
   }
+}
+
+/* PURE CSS CLASSES */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+  background: transparent; 
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
 }
