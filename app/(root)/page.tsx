@@ -1,10 +1,12 @@
-import * as React from "react";
+import ProductCarousel from "@/components/shared/ProductCarousel";
+import { getProducts } from "@/lib/actions/product.actions";
 import { josefin_sans } from "@/lib/fonts";
 import Image from "next/image";
-import ProductCarousel from "@/components/shared/ProductCarousel";
-import products from "@/data/mockProducts.json";
+import { Suspense } from "react";
 
-export default function Home() {
+export default async function Home() {
+  const products = await getProducts();
+
   return (
     <>
       {/* Hero Section */}
@@ -37,15 +39,15 @@ export default function Home() {
       <section className="wrapper flex flex-col gap-5">
         {/* Latest Arrival Carousel */}
         <ProductCarousel
-          products={products.data}
+          products={products}
           title={"Latest Products"}
-          route={"/store/latest"}
+          route={"/store/products/?sort=newest"}
         />
         {/* Featured Products */}
         <ProductCarousel
-          products={products.data}
+          products={products}
           title={"Featured Products"}
-          route={"/store/featured"}
+          route={"/store/products/"}
         />
       </section>
     </>
