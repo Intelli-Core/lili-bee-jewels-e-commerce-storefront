@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { nextui } from "@nextui-org/react";
 
 const config = {
   darkMode: ["class"],
@@ -7,6 +8,7 @@ const config = {
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   prefix: "",
   theme: {
@@ -67,14 +69,22 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        pulse: {
+          "0%, 100%": { backgroundColor: "bg-gray-900" },
+          "50%": { backgroundColor: "bg-gray-900" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        pulse: "pulse 1s infinite",
+      },
+      scrollBehavior: {
+        smooth: "smooth",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
-} satisfies Config
+  plugins: [require("tailwindcss-animate"), nextui()],
+} satisfies Config;
 
-export default config
+export default config;
