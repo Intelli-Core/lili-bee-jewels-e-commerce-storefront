@@ -1,59 +1,165 @@
 "use client";
 
-import React from "react";
+import { Separator } from "@/components/ui/separator";
+import { Stack } from "@/components/ui/stack";
+import { sortOptions } from "@/constants";
+import { capitalizeEachWord, deleteSearchParams } from "@/lib/utils";
+import { FilterCardProps } from "@/types";
+import { Cross2Icon } from "@radix-ui/react-icons";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import CustomFilter from "./CustomFilter";
+import Link from "next/link";
 
-import { FilterItem, Filters, Product, ProductFilters } from "@/types";
-import { getFilters } from "@/utils/getFilters";
-import RadioFilter from "./RadioFilter";
+const addToAppliedFilters = (filters: { type: string; value: string }[]) => {
+  const appliedFilters: { type: string; value: string }[] = [];
+  filters.forEach((filter) => {
+    // Check if the filter type is not size
+    if (filter.type !== "size") {
+      // Use capitalizeEachWord function
+      appliedFilters.push({
+        type: filter.type,
+        value: capitalizeEachWord(filter.value),
+      });
+    } else {
+      // Do not use capitalizeEachWord function
+      appliedFilters.push({
+        type: filter.type,
+        value: filter.value,
+      });
+    }
+  });
 
-type FiltersProps = {
-  filters: Filters[];
-  products: Product[];
+  return appliedFilters;
 };
 
-const getDisplayValue = (item: FilterItem): string => {
-  const displayValue =
-    "name" in item ? item.name : "value" in item ? item.value : "N/A";
-  return displayValue || ""; // return "N/A" if displayValue is undefined
-};
+const FilterCard = ({ filters, currentFilters }: FilterCardProps) => {
+  const router = useRouter();
 
-const getFilterArray = (filters: Filters, key: keyof Filters): FilterItem[] => {
-  const filterArray = filters[key]
-    ? (filters[key] as unknown as FilterItem[])
-    : [];
+  const materialOptions = filters.materials
+    .filter(({ count }) => count > 0)
+    .map(({ id, material_name, count }) => ({
+      id,
+      value: material_name.toLowerCase(),
+      displayValue: material_name,
+      count,
+    }));
 
-  return filterArray;
-};
+  const categoryOptions = filters.categories.map(({ id, category_name }) => ({
+    id,
+    value: category_name.toLowerCase(),
+    displayValue: category_name,
+  }));
 
-const Filters = ({ filters, products }: FiltersProps) => {
-  const {
-    filterCounts,
-    dynamicFilterKeys: filterKeys,
-  }: {
-    filterCounts: Record<string, number>;
-    dynamicFilterKeys: { key: string; value: string }[];
-  } = getFilters(products, filters);
+  const sizeOptions = Object.entries(filters.sizes).map(([id, value]) => ({
+    id,
+    value: id,
+    displayValue: id,
+    originalValue: value,
+  }));
+
+  const [appliedFilters, setAppliedFilters] = useState<
+    { type: string; value: string }[]
+  >([]);
+
+  useEffect(() => {
+    const filtersToApply = [
+      {
+        type: "material",
+        value: currentFilters.material,
+      },
+      {
+        type: "category",
+        value: currentFilters.category,
+      },
+      {
+        type: "size",
+        value: currentFilters.size,
+      },
+    ];
+    setAppliedFilters(addToAppliedFilters(filtersToApply));
+  }, [currentFilters.material, currentFilters.category, currentFilters.size]);
+
+  const handleFilterRemoval = (filterType: string) => {
+    const newFilters = appliedFilters.filter(
+      (filter) => filter.type !== filterType
+    );
+    setAppliedFilters(newFilters);
+    const newPathName = deleteSearchParams(filterType);
+    router.push(newPathName);
+  };
 
   return (
-    <div className="flex flex-col w-full h-5/6 px-5 mt-1 mb-3 md:h-full md:p-0">
-      <div className="overflow-y-auto flex-grow hide-scrollbar">
-        {/* <p className="p-regular-20 md:p-medium-18 pb-2 tracking-wide">Filters</p> */}
-        {filterKeys.map(({ key, value }, index) => (
-          <div className={index === 0 ? "" : "mt-10"} key={key}>
-            <p className="p-medium-20 md:p-medium-18 mb-4">{value}</p>
-            <RadioFilter
-              filterKey={key}
-              value={value}
-              getFilterArray={getFilterArray}
-              getDisplayValue={getDisplayValue}
-              filterCounts={filterCounts}
-              filters={filters}
-            />
-          </div>
-        ))}
+    <div className="flex flex-col w-full gap-8 h-5/6 px-5 mt-1 mb-3 md:h-full md:p-0 overflow-y-auto hide-scrollbar">
+      {/* START APPLIED FILTERS */}
+      {appliedFilters.some((filter) => filter.value.trim() !== "") && (
+        <div className="flex flex-col gap-2">
+          <Stack direction="column" gap={4}>
+            <div className="h-stack justify-between items-center">
+              <p className="p-medium-16 md:p-medium-18 tracking-wide">
+                Applied Filters
+              </p>
+              <Link href={"/store/products/"}>
+                <p className="p-regular-14">Clear all</p>
+              </Link>
+            </div>
+            <div className="h-stack flex-wrap gap-2">
+              {appliedFilters.map(
+                (filter) =>
+                  // Add a condition to check if the filter value is not empty
+                  filter.value.trim() !== "" && (
+                    <div className="h-stack gap-1 items-center justify-center border px-5 w-auto h-8 p-medium-12 rounded-full">
+                      <span>{filter.value}</span>
+                      <button
+                        title="Remove Filter"
+                        onClick={() => handleFilterRemoval(filter.type)}
+                      >
+                        <Cross2Icon className="h-4 w-4 cursor-pointer" />
+                      </button>
+                    </div>
+                  )
+              )}
+            </div>
+          </Stack>
+        </div>
+      )}
+      {/* END OF APPLIED FILTERS */}
+      
+      <CustomFilter
+        title="Sort By"
+        options={sortOptions}
+        defaultValue={currentFilters.sort}
+        queryKey="sort"
+        filterType={"radio"}
+      />
+      <Separator />
+      <div className="hidden md:block">
+        <CustomFilter
+          title="Category"
+          options={categoryOptions}
+          queryKey="category"
+          defaultValue={currentFilters.category || "all"}
+          filterType="radio"
+        />
+        <Separator className="mt-8" />
       </div>
+      <CustomFilter
+        title="Material"
+        options={materialOptions}
+        queryKey="material"
+        defaultValue={currentFilters.material || "none"}
+        filterType={"radio"}
+      />
+      <Separator />
+      <CustomFilter
+        title="Size"
+        options={sizeOptions}
+        queryKey="size"
+        filterType="button"
+        defaultValue={currentFilters.size || "none"}
+      />
     </div>
   );
 };
 
-export default Filters;
+export default FilterCard;

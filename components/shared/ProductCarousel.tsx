@@ -1,15 +1,15 @@
 "use client";
 
-import React from "react";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
-import ProductCard from "./ProductCard";
 import { Product } from "@/types";
+import Autoplay from "embla-carousel-autoplay";
 import Link from "next/link";
+import React from "react";
+import ProductCard from "./ProductCard";
 
 type ProductCarouselProps = {
   products: Product[];
@@ -48,28 +48,7 @@ const ProductCarousel = ({ products, title, route }: ProductCarouselProps) => {
                 className="pl-2 md:pl-1 basis-1/2 md:basis-1/4"
               >
                 <div className="p-1">
-                  <ProductCard
-                    id={product.id}
-                    name={product.name}
-                    price={product.price}
-                    category={{
-                      id: product.category.id,
-                      value: product.category.value,
-                    }}
-                    material={{
-                      id: product.material.id,
-                      value: product.material.value,
-                    }}
-                    color={{
-                      id: product.color.id,
-                      value: product.color.value,
-                      hex: product.color.hex,
-                    }}
-                    priceRange={{
-                      id: product.priceRange.id,
-                      value: product.priceRange.value,
-                    }}
-                  />
+                  <ProductCard product={product} />
                 </div>
               </CarouselItem>
             ))}

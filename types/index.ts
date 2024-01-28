@@ -1,67 +1,122 @@
+import { Dispatch, SetStateAction } from "react";
+
 export type Product = {
-  id: number;
-  name: string;
+  id: string;
+  attributes: null;
+  options: Option[];
   price: number;
-  priceRange: PriceRange;
+  created_at: string;
+  updated_at: string;
+  name: string;
+  description: null;
+  caption: null;
+  thumbnail: string;
   category: Category;
-  material: Material;
-  color: Color;
-  sizes?: Size[];
-  image?: string;
-  description?: string;
+  media: Media[];
+};
+
+export type Option = {
+  id: string;
+  attributes: Attributes;
+  price: number;
+  created_at: string;
+  updated_at: string;
+  thumbnail: string;
+  media: Media[];
+};
+
+export type Attributes = {
+  id: string;
+  weight: number;
+  created_at: string;
+  updated_at: string;
+  metal: string;
+  sizes: string[];
+};
+
+export type Media = {
+  image: string;
 };
 
 export type Category = {
-  id: number;
-  value: string;
-};
-
-export type Material = {
-  id: number;
-  value: string;
-};
-
-export type Color = {
-  id: number;
-  value: string;
-  hex?: string;
-};
-
-export type Size = {
-  id: number;
-  value: string;
-};
-
-export type PriceRange = {
-  id: number;
-  value: string;
+  id: string;
+  created_at: string;
+  updated_at: string;
+  name: string;
+  description: null;
 };
 
 export type Filters = {
-  categories: Category[];
-  materials: Material[];
-  colors: Color[];
-  sizes: Size[];
-  priceRanges: PriceRange[];
+  [key: string]: any;
+  categories: FilterCategories[];
+  materials: FilterMaterials[];
+  sizes: FilterSizes;
 };
 
-export type SelectOptions = {
-  value: string;
-  label: string;
+type FilterCategories = {
+  id: string;
+  category_name: string;
+  count: number;
 };
 
-export type ProductFilters = {
-  products: Product[];
-  filters: Filters;
+type FilterMaterials = {
+  id: string;
+  material_name: string;
+  count: number;
 };
 
-export type FilterItem = { id: number; name?: string; value?: string };
+type FilterSizes = {
+  [key: string]: number;
+};
 
 export type FilterProps = {
-  filters: Filters[];
-  filterKey: string;
-  value: string;
-  getFilterArray: (filter: Filters, key: keyof Filters) => FilterItem[];
-  getDisplayValue: (item: FilterItem) => string;
-  filterCounts: Record<string, number>;
+  category?: string;
+  material?: string;
+  size?: string;
+  sort?: string;
 };
+
+export type StoreProps = {
+  searchParams: FilterProps;
+};
+
+export type FilterCardProps = {
+  filters: Filters;
+  currentFilters: CurrentFilters;
+};
+
+export type SelectOption = {
+  value: string;
+  displayValue: string;
+};
+
+export type FilterOption = {
+  id?: string;
+  value: string;
+  displayValue?: string;
+  count?: number;
+};
+
+export type CurrentFilters = {
+  [key: string]: string;
+  category: string;
+  material: string;
+  sort: string;
+  size: string;
+};
+
+export type CustomFilterType = {
+  title: string;
+  defaultValue?: string;
+  options: FilterOption[];
+  queryKey: string;
+  filterType: "radio" | "select" | "button";
+};
+
+export type ButtonVariant =
+  | "ghost"
+  | "link"
+  | "default"
+  | "destructive"
+  | "outline"
+  | "secondary";

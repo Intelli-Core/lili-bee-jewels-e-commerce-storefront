@@ -89,6 +89,18 @@
     @apply flex justify-between;
   }
 
+  .button-group {
+    @apply grid grid-cols-2;
+  }
+
+  .v-stack {
+    @apply flex flex-col;
+  }  
+
+  .h-stack {
+    @apply flex flex-row;
+  }
+
   /* TYPOGRAPHY */
   /* 64 */
   .h1-bold {

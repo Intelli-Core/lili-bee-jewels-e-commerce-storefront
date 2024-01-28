@@ -3,6 +3,7 @@
 import React from "react";
 import { headerLinks } from "@/constants";
 import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
 
 type NavItemProps = {
   fontStyle?: string;
@@ -13,11 +14,10 @@ const NavItems = ({ fontStyle = "p-regular-16", closeSheet }: NavItemProps) => {
   const pathname = usePathname();
   const router = useRouter();
 
-  const handleClick = (route: string) => {
+  const handleClick = () => {
     if (closeSheet) {
       closeSheet();
     }
-    router.push(route);
   };
 
   return (
@@ -28,14 +28,12 @@ const NavItems = ({ fontStyle = "p-regular-16", closeSheet }: NavItemProps) => {
         return (
           <li
             key={link.route}
-            className={`${
-              isActive && "text-primary-500"
-            } flex-center ${fontStyle} whitespace-nowrap ${
+            className={`flex-center ${fontStyle} whitespace-nowrap ${
               link.mobile ? "block md:hidden" : "hidden md:block"
             }`}
           >
-            <button onClick={() => handleClick(link.route)}>
-              {link.label.toUpperCase()}
+            <button onClick={() => handleClick()}>
+              <Link href={link.route}>{link.label}</Link>
             </button>
           </li>
         );
