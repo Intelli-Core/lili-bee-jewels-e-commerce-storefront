@@ -1,3 +1,5 @@
+import { FilterOption } from "@/types";
+
 export const headerLinks = [
   {
     label: "Home",
@@ -5,12 +7,12 @@ export const headerLinks = [
   },
   {
     label: "Store",
-    route: "/store",
+    route: "/store/products",
   },
   {
     label: "Wishlist",
     route: "/wishlist",
-    mobile: true, 
+    mobile: true,
   },
   {
     label: "About Us",
@@ -19,7 +21,7 @@ export const headerLinks = [
   {
     label: "Contact Us",
     route: "/contact",
-  }
+  },
 ];
 
 export const headerButtons = [
@@ -46,28 +48,12 @@ export const headerButtons = [
     icon: "/assets/icons/shopping-bag.svg",
     route: "/shopping-bag",
     mobile: true,
-  }
+  },
 ];
 
 export const sortOptions = [
-  {
-    label: "Trending Now",
-    value: "trending_now",
-  },
-  {
-    label: "New Arrivals",
-    value: "new_arrivals",
-  },
-  {
-    label: "Best Selling",
-    value: "best_selling",
-  },
-  {
-    label: "Highest Price",
-    value: "highest_price",
-  },
-  {
-    label: "Lowest Price",
-    value: "lowest_price",
-  }
-]
+  { value: "featured", displayValue: "Featured" },
+  { value: "newest", displayValue: "Newest" },
+  { value: "price_asc", displayValue: "Price: Low to High" },
+  { value: "price_desc", displayValue: "Price: High to Low" },
+];
