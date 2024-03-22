@@ -16,13 +16,27 @@ async function getProducts(): Promise<Product[]> {
   return data;
 }
 
+async function getProductById(id: string): Promise<Product> {
+  const url = `${process.env.DOMAIN}/product/${id}/`;
+
+  const response = await fetch(url, { next: { revalidate: 5 } });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  const data = await response.json();
+
+  return data;
+}
+
 async function getProductsByFilter(filters: FilterProps): Promise<Product[]> {
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
   const { category, material, size, sort } = filters;
   const url = `${process.env.DOMAIN}/product/?category=${category}&material=${material}&size=${size}&sort=${sort}`;
 
-  const response = await fetch(url, { cache: "no-store" });
+  const response = await fetch(url);
 
   if (!response.ok) {
     throw new Error("Failed to fetch data");
@@ -40,4 +54,4 @@ async function getProductFilters(): Promise<Filters> {
   return res.json();
 }
 
-export { getProducts, getProductsByFilter, getProductFilters };
+export { getProducts, getProductById, getProductsByFilter, getProductFilters };
