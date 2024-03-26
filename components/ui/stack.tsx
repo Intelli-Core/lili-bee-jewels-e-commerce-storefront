@@ -8,7 +8,7 @@ type StackProps = {
   header?: string;
   headerStyle?: string;
   gap?: number;
-  classname?: string;
+  className?: string;
 };
 
 export const Stack = ({
@@ -17,11 +17,11 @@ export const Stack = ({
   header,
   headerStyle,
   gap,
-  classname
+  className,
 }: StackProps) => {
   const flexDirection = direction === "row" ? "h-stack" : "v-stack";
   return (
-    <div className={`w-full ${flexDirection} gap-${gap} ${classname}`}>
+    <div className={`w-full ${flexDirection} gap-${gap} ${className}`}>
       {header && <p className={`${headerStyle}`}>{header}</p>}
       {children}
     </div>
