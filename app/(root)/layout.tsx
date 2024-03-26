@@ -7,9 +7,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <div className="flex h-screen flex-col">
       <Header />
-      <Suspense fallback={<SpinnerLoader />}>
-        <main className="flex-1">{props.children}</main>
-      </Suspense>
+      <main className="flex-1">{props.children}</main>
       <Footer />
     </div>
   );
