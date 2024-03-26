@@ -5,7 +5,7 @@ async function getProducts(): Promise<Product[]> {
 
   const url = `${process.env.DOMAIN}/product/`;
 
-  const response = await fetch(url, { cache: "no-store" });
+  const response = await fetch(url);
 
   if (!response.ok) {
     throw new Error("Failed to fetch data");
@@ -49,7 +49,7 @@ async function getProductsByFilter(filters: FilterProps): Promise<Product[]> {
 
 async function getProductFilters(): Promise<Filters> {
   const url = `${process.env.DOMAIN}/product/filters/`;
-  const res = await fetch(url, { cache: "no-store" });
+  const res = await fetch(url);
 
   return res.json();
 }
