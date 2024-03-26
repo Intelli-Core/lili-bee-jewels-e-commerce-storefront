@@ -1,4 +1,4 @@
-import ProductGrid from "@/components/shared/ProductGrid";
+import ProductGrid from "@/app/(root)/store/products/components/ProductGrid";
 import { Stack } from "@/components/ui/stack";
 import {
   getProductFilters,
@@ -21,7 +21,6 @@ export default async function ProductsPage({ searchParams }: StoreProps) {
   return (
     <div className="wrapper flex flex-col md:flex-row w-full h-full gap-4 md:gap-10">
       <FilterClient filters={productFilters} productLength={products.length} />
-
       {products.length > 0 ? (
         <Stack direction="column" gap={2.5}>
           <p className="p-regular-14 hidden md:flex">
