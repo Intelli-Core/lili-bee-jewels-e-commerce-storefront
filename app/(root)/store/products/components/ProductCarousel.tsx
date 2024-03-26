@@ -19,7 +19,7 @@ type ProductCarouselProps = {
 
 const ProductCarousel = ({ products, title, route }: ProductCarouselProps) => {
   const plugin = React.useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: true })
+    Autoplay({ delay: 3000, stopOnInteraction: true }),
   );
 
   return (
@@ -45,7 +45,7 @@ const ProductCarousel = ({ products, title, route }: ProductCarouselProps) => {
             {products.map((product, index) => (
               <CarouselItem
                 key={index}
-                className="pl-2 md:pl-1 basis-1/2 md:basis-1/4"
+                className="basis-1/2 pl-2 md:basis-1/4 md:pl-1"
               >
                 <div className="p-1">
                   <ProductCard product={product} />
