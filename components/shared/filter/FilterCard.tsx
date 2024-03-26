@@ -124,7 +124,7 @@ const FilterCard = ({ filters, currentFilters }: FilterCardProps) => {
         </div>
       )}
       {/* END OF APPLIED FILTERS */}
-      
+
       <CustomFilter
         title="Sort By"
         options={sortOptions}
