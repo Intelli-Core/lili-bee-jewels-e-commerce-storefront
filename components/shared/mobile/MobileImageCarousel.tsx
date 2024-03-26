@@ -7,8 +7,7 @@ import {
 } from "@/components/ui/carousel";
 import { Media } from "@/types";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
-import ProductImage from "../ProductImage";
+import React from "react";
 
 type MobileImageCarouselProps = {
   images: Media[];
@@ -38,10 +37,11 @@ export const MobileImageCarousel = ({ images }: MobileImageCarouselProps) => {
         {images.map((image, index) => (
           <CarouselItem key={index} className="w-[100%]">
             <AspectRatio ratio={1 / 1}>
-              <ProductImage
-                name={"product thumbnail"}
+              <Image
+                alt={"product thumbnail"}
                 src={image.image}
                 className="h-auto max-w-full"
+                fill
               />
             </AspectRatio>
           </CarouselItem>
