@@ -1,10 +1,6 @@
-import { Spinner } from "@nextui-org/react";
+import LoadingSpinner from "@/components/ui/loading-spinner";
 
 export default function Loading() {
   // You can add any UI inside Loading, including a Skeleton.
-  return (
-    <div className="h-full flex flex-col justify-center items-center">
-      <Spinner size="md" />
-    </div>
-  );
+  return <LoadingSpinner />;
 }
