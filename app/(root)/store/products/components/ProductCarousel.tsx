@@ -13,8 +13,8 @@ import ProductCard from "./ProductCard";
 
 type ProductCarouselProps = {
   products: Product[];
-  title: string;
-  route: string;
+  title?: string;
+  route?: string;
 };
 
 const ProductCarousel = ({ products, title, route }: ProductCarouselProps) => {
@@ -25,10 +25,12 @@ const ProductCarousel = ({ products, title, route }: ProductCarouselProps) => {
   return (
     <div className="flex flex-col gap-2.5 md:gap-2.5">
       <div className="flex justify-between">
-        <p className="p-medium-16">{title}</p>
-        <p className="p-regular-14">
-          <Link href={route}>View All</Link>
-        </p>
+        {title && <p className="p-medium-16">{title}</p>}
+        {route && (
+          <p className="p-regular-14">
+            <Link href={route}>View All</Link>
+          </p>
+        )}
       </div>
 
       <div className="flex justify-center">
