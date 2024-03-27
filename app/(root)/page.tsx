@@ -1,4 +1,4 @@
-import ProductCarousel from "@/components/shared/ProductCarousel";
+import ProductCarousel from "@/app/(root)/store/products/components/ProductCarousel";
 import { getProducts } from "@/lib/actions/product.actions";
 import { josefin_sans } from "@/lib/fonts";
 import Image from "next/image";

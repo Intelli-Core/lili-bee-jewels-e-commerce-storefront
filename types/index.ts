@@ -1,8 +1,6 @@
-import { Dispatch, SetStateAction } from "react";
-
 export type Product = {
   id: string;
-  attributes: null;
+  attributes: Attributes;
   options: Option[];
   price: number;
   created_at: string;
@@ -30,7 +28,7 @@ export type Attributes = {
   weight: number;
   created_at: string;
   updated_at: string;
-  metal: string;
+  material: Material;
   sizes: string[];
 };
 
@@ -39,6 +37,14 @@ export type Media = {
 };
 
 export type Category = {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  name: string;
+  description: null;
+};
+
+export type Material = {
   id: string;
   created_at: string;
   updated_at: string;
