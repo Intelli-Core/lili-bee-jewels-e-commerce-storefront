@@ -20,7 +20,7 @@ const ProductMedia = ({ thumbnail, mediaList }: ProductImageProps) => {
         {mediaList.length > 0 ? (
           <ImageGallery images={mediaList} />
         ) : (
-          <div className="w-[650px] cursor-zoom-in">
+          <div className="w-full lg:w-[650px] cursor-zoom-in">
             <AspectRatio ratio={1 / 1}>
               <Image
                 src={productThumbnail}
