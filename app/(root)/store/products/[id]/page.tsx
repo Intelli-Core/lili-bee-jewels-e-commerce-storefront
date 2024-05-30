@@ -5,8 +5,8 @@ import {
 } from "@/lib/actions/product.actions";
 import ProductClient from "./components/ProductClient";
 import React from "react";
-import ProductOptionProvider from "@/contexts";
 import ProductRecommendations from "./components/ProductRecommendations";
+import { ProductOptionProvider } from "@/contexts";
 
 async function ProductPage({ params }: { params: { id: string } }) {
   const product = await getProductById(params.id);
