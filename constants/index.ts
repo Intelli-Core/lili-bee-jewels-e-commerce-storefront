@@ -44,7 +44,7 @@ export const headerButtons = [
   {
     label: "shopping-bag",
     icon: "/assets/icons/shopping-bag.svg",
-    route: "/shopping-bag",
+    route: "/store/cart",
     mobile: true,
   },
 ];

@@ -3,7 +3,9 @@
 import { GenericCard } from "@/components/shared/GenericCard";
 import { Button } from "@/components/ui/button";
 import { Stack } from "@/components/ui/stack";
-import { useProductOption } from "@/hooks";
+import { useCartData, useProductOption } from "@/hooks";
+import { createCart, addCartItemToCart } from "@/lib/actions/cart.actions";
+import { useCartStore } from "@/lib/store/cart.store";
 import { Attributes, Product } from "@/types";
 import React from "react";
 import { useEffect, useState } from "react";
@@ -15,7 +17,7 @@ type ProductDetailsProps = {
 
 const getProductDetails = (
   attributes: Attributes,
-  size: string | undefined
+  size: string | undefined,
 ) => [
   {
     title: "Overview",
@@ -59,6 +61,9 @@ const getProductDetails = (
 
 export const ProductDetails = ({ product }: ProductDetailsProps) => {
   const { selectedOption, setSelectedOption } = useProductOption();
+  const cartId = useCartStore((state) => state.cartId);
+  const setCartId = useCartStore((state) => state.setCartId);
+  const cart = useCartData(cartId as string);
 
   const attributes = selectedOption?.attributes
     ? selectedOption.attributes
@@ -75,16 +80,16 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
   useEffect(() => {
     setSelectedMaterial(
       selectedOption?.attributes.material.name ||
-        product.attributes.material.name
+        product.attributes.material.name,
     );
     setSelectedSize(
-      selectedOption?.attributes.sizes[0] || product.attributes.sizes[0]
+      selectedOption?.attributes.sizes[0] || product.attributes.sizes[0],
     );
   }, [selectedOption]);
 
   const productDetailItems = getProductDetails(attributes, selectedSize);
 
-  const handleAddToBag = () => {
+  const handleAddToCart = async () => {
     toast("Added to bag", {
       description: (
         <Stack gap={1}>
@@ -94,6 +99,22 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
         </Stack>
       ),
     });
+
+    const cartItems = cart?.items || [];
+    const selectedProduct = {
+      product: product,
+      selectedSize: selectedSize,
+      selectedMaterial: selectedMaterial,
+    };
+    const updatedCartItems = [...cartItems, selectedProduct];
+
+    if (cartId) {
+      await addCartItemToCart(cartId, selectedProduct);
+    } else {
+      const createCartId = (await createCart()).id;
+      await addCartItemToCart(createCartId, selectedProduct);
+      setCartId(createCartId);
+    }
   };
 
   return (
@@ -160,7 +181,7 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
         <Button
           variant="default"
           className="h-[62px] rounded-full"
-          onClick={() => handleAddToBag()}
+          onClick={() => handleAddToCart()}
         >
           <p className="p-regular-16">Add to bag</p>
         </Button>

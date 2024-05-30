@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { jost } from "@/lib/fonts";
+import { jost, inter } from "@/lib/fonts";
 import { Providers } from "@/components/shared/Providers";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={jost.className}>
+      <body className={inter.className}>
         <Providers>{children}</Providers>
         <Toaster />
       </body>

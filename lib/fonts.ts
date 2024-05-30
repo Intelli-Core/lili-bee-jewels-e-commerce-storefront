@@ -1,4 +1,4 @@
-import { Jost, Josefin_Sans } from "next/font/google";
+import { Jost, Josefin_Sans, Inter } from "next/font/google";
 
 const jost = Jost({
   subsets: ["latin"],
@@ -12,4 +12,10 @@ const josefin_sans = Josefin_Sans({
   variable: "--font-josefin-sans",
 });
 
-export { jost, josefin_sans };
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-inter"
+})
+
+export { jost, josefin_sans, inter };

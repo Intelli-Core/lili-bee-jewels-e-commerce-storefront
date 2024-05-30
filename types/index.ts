@@ -1,3 +1,5 @@
+// Database models related
+
 export type Product = {
   id: string;
   attributes: Attributes;
@@ -51,6 +53,28 @@ export type Material = {
   name: string;
   description: null;
 };
+
+export type CartItem = {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  product: Product;
+  quantity: number;
+  subtotal: number;
+  selectedSize: string;
+  selectedMaterial: string;
+}
+
+export type Cart = {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  items: CartItem[];
+  quantity: number;
+  subtotal: number;
+}
+
+// Util related
 
 export type Filters = {
   [key: string]: any;
