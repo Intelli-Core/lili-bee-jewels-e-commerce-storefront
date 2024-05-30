@@ -1,18 +1,29 @@
 "use client";
 
-import { Option, Product } from "@/types";
-import { createContext, Dispatch, SetStateAction, useState } from "react";
+import { Cart, Option, Product } from "@/types";
+import {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 
 type OptionType = {
   selectedOption: Option | null;
   setSelectedOption: Dispatch<SetStateAction<Option | null>>;
 };
 
+type CartType = {
+  cartId: string | null;
+  setCartId: (cartId: string | null) => void;
+};
+
 export const ProductOptionContext = createContext<OptionType | undefined>(
-  undefined
+  undefined,
 );
 
-export default function ProductOptionProvider({
+export function ProductOptionProvider({
   children,
   product,
 }: {
@@ -20,7 +31,7 @@ export default function ProductOptionProvider({
   product: Product;
 }) {
   const [selectedOption, setSelectedOption] = useState(
-    product.options.length > 0 ? product.options[0] : null
+    product.options.length > 0 ? product.options[0] : null,
   );
 
   return (
